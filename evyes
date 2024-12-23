@@ -1,1 +1,305 @@
-https://raw.githubusercontent.com/Actufe/Vercibahub/refs/heads/main/DSS3?token=GHSAT0AAAAAAC35WHXDCJCEYGKFIH5PWRHSZ3JWDBQ
+local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shlexware/Orion/main/source')))()
+
+
+local Window = OrionLib:MakeWindow({Name = "DSS3 Autofarm", HidePremium = false, SaveConfig = true, ConfigFolder = "OrionTest"})
+
+--[[
+Name = <string> - The name of the UI.
+HidePremium = <bool> - Whether or not the user details shows Premium status or not.
+SaveConfig = <bool> - Toggles the config saving in the UI.
+ConfigFolder = <string> - The name of the folder where the configs are saved.
+IntroEnabled = <bool> - Whether or not to show the intro animation.
+IntroText = <string> - Text to show in the intro animation.
+IntroIcon = <string> - URL to the image you want to use in the intro animation.
+Icon = <string> - URL to the image you want displayed on the window.
+CloseCallback = <function> - Function to execute when the window is closed.
+]]
+
+
+
+local MainTab = Window:MakeTab({
+	Name = "Autofarms",
+	Icon = "rbxassetid://4483345998",
+	PremiumOnly = false
+})
+
+--[[
+Name = <string> - The name of the tab.
+Icon = <string> - The icon of the tab.
+PremiumOnly = <bool> - Makes the tab accessible to Sirus Premium users only.
+]]
+
+
+
+MainTab:AddButton({
+	Name = "RO/RO Farm (Working)",
+	Callback = function(v)
+               local boatType = "Ace-class RO/RO"
+          local YourShitp = nil
+
+            local p = game:GetService("Players").LocalPlayer
+            local Character = p.Character
+            local UIS = game:GetService("UserInputService")
+            local CF = CFrame.new
+            local V3 = Vector3.new
+            for _, v in pairs(workspace:GetDescendants()) do
+                if
+                    v.Name == boatType and v:FindFirstChild("Regen") and
+                        v.Regen.Gunboat.VehicleSeat.ShipControl.OWNER.Value.Name ==
+                            game:GetService("Players").LocalPlayer.Name
+                 then
+                    print("found boat")
+                    YourShitp = v
+                end
+            end
+            local argsToStart = {
+                [1] = "load",
+                [2] = YourShitp,
+                [3] = workspace:FindFirstChild("RO/RODock3")
+            }
+            local argsToStop = {
+                [1] = "sell",
+                [2] = YourShitp,
+                [3] = workspace:FindFirstChild("RO/RODock1")
+            }
+
+            YourShitp.PrimaryPart = YourShitp.Regen.Gunboat.Base
+            local function MoveShitpTo(cfrm)
+                YourShitp:SetPrimaryPartCFrame(CF(cfrm))
+            end
+            local function notify(texto)
+                game:GetService("StarterGui"):SetCore(
+                    "SendNotification",
+                    {
+                        Title = "DSS3 gaming autofarm",
+                        Text = texto
+                    }
+                )
+            end
+
+            notify("began autofarming")
+            while true do
+                notify("cycle")
+                MoveShitpTo(V3(-14417, 30, -43390))
+                wait(5)
+                workspace.HandleCargoEvent:FireServer(unpack(argsToStart))
+                notify("picked up cargo")
+                wait(300)
+                MoveShitpTo(V3(-6810, 31, 24511))
+                wait(5)
+                workspace.HandleCargoEvent:FireServer(unpack(argsToStop))
+                notify("sold cargo")
+                wait(5)
+            end
+            
+        end
+    }
+)
+
+--[[
+Name = <string> - The name of the button.
+Callback = <function> - The function of the button.
+]]
+
+
+
+MainTab:AddButton({
+	Name = "Ferry Farm (Working)",
+	Callback = function(v)
+            local boatType = "European-class ferry"
+
+            local YourShitp = nil
+
+            local p = game:GetService("Players").LocalPlayer
+            local Character = p.Character
+            local UIS = game:GetService("UserInputService")
+            local CF = CFrame.new
+            local V3 = Vector3.new
+            for _, v in pairs(workspace:GetDescendants()) do
+                if
+                    v.Name == boatType and v:FindFirstChild("Regen") and
+                        v.Regen.Gunboat.VehicleSeat.ShipControl.OWNER.Value.Name ==
+                            game:GetService("Players").LocalPlayer.Name
+                 then
+                    print("found boat")
+                    YourShitp = v
+                end
+            end
+            local argsToStart = {
+                [1] = "load",
+                [2] = YourShitp,
+                [3] = workspace.FerryDock4
+            }
+            local argsToStop = {
+                [1] = "sell",
+                [2] = YourShitp,
+                [3] = workspace.FerryDock2
+            }
+
+            YourShitp.PrimaryPart = YourShitp.Regen.Gunboat.Base
+            local function MoveShitpTo(cfrm)
+                YourShitp:SetPrimaryPartCFrame(CF(cfrm))
+            end
+            local function notify(texto)
+                game:GetService("StarterGui"):SetCore(
+                    "SendNotification",
+                    {
+                        Title = "DSS3 gaming autofarm",
+                        Text = texto
+                    }
+                )
+            end
+
+            notify("began autofarming")
+            while true do
+                notify("cycle")
+                MoveShitpTo(V3(-15042, 31, -43761))
+                wait(5)
+                workspace.HandleCargoEvent:FireServer(unpack(argsToStart))
+                notify("picked up cargo")
+                wait(300)
+                MoveShitpTo(V3(-7011, 30, 24685))
+                wait(5)
+                workspace.HandleCargoEvent:FireServer(unpack(argsToStop))
+                notify("sold cargo")
+                wait(5)
+            end
+
+        end
+    }
+)
+
+
+
+
+MainTab:AddButton({
+	Name = "Bulk Farm (Working)",
+	Callback = function(v)
+                local boatType = "Bulk carrier" -- ask owner for change to Any (BULK SHIP)
+
+            local YourShitp = nil
+
+            local p = game:GetService("Players").LocalPlayer
+            local Character = p.Character
+            local UIS = game:GetService("UserInputService")
+            local CF = CFrame.new
+            local V3 = Vector3.new
+            for _,v in pairs(workspace:GetDescendants())do
+                if
+                    v.Name == boatType and v:FindFirstChild("Regen") and
+                        v.Regen.Gunboat.VehicleSeat.ShipControl.OWNER.Value.Name ==
+                            game:GetService("Players").LocalPlayer.Name
+                 then
+                    print("found boat")
+                    YourShitp = v
+                end
+            end
+            local argsToStart = {
+                [1] = "load",
+                [2] = YourShitp,
+                [3] = workspace.GeneralDock7
+            }
+            local argsToStop = {
+                [1] = "sell",
+                [2] = YourShitp,
+                [3] = workspace.GeneralDock8
+            }
+
+            YourShitp.PrimaryPart = YourShitp.Regen.Gunboat.Base
+            local function MoveShitpTo(cfrm)
+                YourShitp:SetPrimaryPartCFrame(CF(cfrm))
+            end
+            local function notify(texto)
+                game:GetService("StarterGui"):SetCore(
+                    "SendNotification",
+                    {
+                        Title = "Hafiz adi kalan ünlü",
+                        Text = texto
+                    }
+                )
+            end
+
+            notify("began autofarming")
+            while true do
+                notify("cycle")
+                MoveShitpTo(V3(49181, 10, -3344))
+                wait(2.5)
+                workspace.HandleCargoEvent:FireServer(unpack(argsToStart))
+                notify("picked up cargo")
+                wait(300)
+                MoveShitpTo(V3(29080, 20, -23004))
+                wait(2.5)
+                workspace.HandleCargoEvent:FireServer(unpack(argsToStop))
+                notify("sold cargo")
+                wait(5)
+            end
+
+        end
+    }
+)
+
+
+MainTab:AddButton({
+	Name = "Container Farm (Working)",
+	Callback = function(v)
+                local boatType = "G2-class carrier" -- does not uses fuel (Find Cframe for TELEPORT.)
+
+            local YourShitp = nil
+
+            local p = game:GetService("Players").LocalPlayer
+            local Character = p.Character
+            local UIS = game:GetService("UserInputService")
+            local CF = CFrame.new
+            local V3 = Vector3.new
+            for _, v in pairs(workspace:GetDescendants()) do
+                if
+                    v.Name == boatType and v:FindFirstChild("Regen") and
+                        v.Regen.Gunboat.VehicleSeat.ShipControl.OWNER.Value.Name ==
+                            game:GetService("Players").LocalPlayer.Name
+                 then
+                    print("found boat")
+                    YourShitp = v
+                end
+            end
+            local argsToStart = {
+                [1] = "load",
+                [2] = YourShitp,
+                [3] = workspace.ContainerDock4 -- you can change it for any docks whatever you want (only if you buy source lol)
+            }
+            local argsToStop = {
+                [1] = "sell",
+                [2] = YourShitp,
+                [3] = workspace.ContainerDock3
+            }
+
+            YourShitp.PrimaryPart = YourShitp.Regen.Gunboat.Base
+            local function MoveShitpTo(cfrm)
+                YourShitp:SetPrimaryPartCFrame(CF(cfrm))
+            end
+            local function notify(texto)
+                game:GetService("StarterGui"):SetCore(
+                    "SendNotification",
+                    {
+                        Title = "DSS3 gaming autofarm",
+                        Text = texto
+                    }
+                )
+            end
+
+            notify("began autofarming")
+            while true do
+                notify("Started")
+                MoveShitpTo(V3(-14376, 41, -43586))
+                wait(5)
+                workspace.HandleCargoEvent:FireServer(unpack(argsToStart))
+                notify("picked up cargo")
+                wait(300)
+                MoveShitpTo(V3(-5978, 41, 26999))
+                wait(5)
+                workspace.HandleCargoEvent:FireServer(unpack(argsToStop))
+                notify("Cargo Sold!")
+                wait(5)
+            end
+        end
+    }
+)        
